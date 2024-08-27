@@ -14,14 +14,11 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    respond_to do |format|
-      if @list.save
-        format.html { redirect_to lists_path }
-        format.json
-      else
-        format.html { render :index, status: :unprocessable_entity }
-        format.json
-      end
+    @lists = List.all
+    if @list.save
+      redirect_to lists_path
+    else
+      render :index, status: :unprocessable_entity
     end
   end
 

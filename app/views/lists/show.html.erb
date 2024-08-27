@@ -1,4 +1,4 @@
-<div class="container" data-controller="hello">
+<div class="container">
   <div class="position-relative">
     <div class="card-category card-large" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('cover.jpg') %>)">
       <h1><%= @list.name %></h1>
@@ -39,28 +39,23 @@
     <div class="row" data-controller="review">
       <div class="col-12 col-sm-6">
         <h3>Reviews</h3>
-        <% if @list.reviews.empty? %>
-          <small><em class="text-muted">Be the first one to review this list</em></small>
-        <% end %>
-        <% @list.reviews.each do |review| %>
-          <div>
-            <p class="mb-0"><%= review.comment %></p>
-            <p class="mb-0"><%= review.rating %></p>
-          </div>
-          <hr>
-        <% end %>
-      </div>
-
-      <div class="col-12 col-sm-6">
-        <div class="bg-white rounded p-3">
-          <h5>Add your review</h5>
-          <%= simple_form_for [@list, @review] do |f| %>
-            <%= f.input :comment, placeholder: "Add your review here..." %>
-            <%= f.input :rating, as: :select, collection: (1..5), required: true, label: false %>
-            <%= f.submit class: "btn btn-flat mt-2" %>
+        <div data-review-target="link">
+          <% if @list.reviews.empty? %>
+            <small><em class="text-muted">Be the first one to review this list</em></small>
+          <% end %>
+        </div>
+        <div data-review-target="items">
+          <% @list.reviews.each do |review| %>
+            <%= render "lists/review_show", review: review %>
           <% end %>
         </div>
       </div>
+      <div class="col-12 col-sm-6">
+        <div class="bg-white rounded p-3">
+        <h5>Add your review</h5>
+        <%= render "lists/review_form", list: @list, review: @review  %>
+      </div>
+    </div>
     </div>
   </div>
 </div>

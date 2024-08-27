@@ -4,8 +4,8 @@
       <div class="bg-white rounded p-3 shadow">
         <h3>Nouvelle liste</h3>
         <%= simple_form_for @list do |f| %>
-          <%= f.input :name, placeholder: 'Titre de la liste', label: false %>
-          <%= f.button :submit, "Créer la liste" %>
+          <%= f.input :name, placeholder: 'Titre de la liste', label: false, error: "ajoutez un titre" %>
+          <%= f.submit 'Créer', class: 'btn btn-flat btn-primary' %>
         <% end %>
       </div>
     </div>
