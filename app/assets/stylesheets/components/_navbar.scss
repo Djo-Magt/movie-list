@@ -11,6 +11,13 @@
   width: 40px;
 }
 
+.avatar {
+  width: 40px;  /* Ajustez cette valeur selon votre besoin */
+  height: 40px; /* Ajustez cette valeur selon votre besoin */
+  object-fit: cover; /* Ceci permet de conserver le ratio de l'image */
+  border-radius: 50%; /* Pour arrondir les coins si c'est un avatar circulaire */
+}
+
 .banner {
   background-size: cover;
   background-position: center;
